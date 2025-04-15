@@ -39,47 +39,18 @@ let titles = [
 // Your final submission should have much more data than this, and
 // you should use more than just an array of strings to store it all.
 
-const brawlers = [
+// array of brawler objects
+let brawlers = [
   {
     name : "Shelly",
     rarity: "Common",
     imageURL: "/images/shelly.png",
   },
-  {
-    name : "Carl",
-    rarity: "Rare",
-    imageURL: "/images/carl.png",
-  },
-  {
-    name : "Rico",
-    rarity: "Rare",
-    imageURL: "/images/rico.png",
-  },
-  {
-    name : "Lumi",
-    rarity: "Mythic",
-    imageURL: "/images/lumi.png",
-  },
-  {
-    name : "Chester",
-    rarity: "Legendary",
-    imageURL: "/images/chester.png",
-  },
-  {
-    name : "Janet",
-    rarity: "Mythic",
-    imageURL: "/images/janet.png",
-  },
-  {
-    name : "Byron",
-    rarity: "Mythic",
-    imageURL: "/images/byron.png",
-  },
-  // {
-  //   name : "Larry and Laurie",
-  //   rarity: "Common",
-  //   imageURL: "/images/larryandlawrie.png",
-  // },
+]; 
+
+
+// default brawlers in S tier
+let tierS = [
   {
     name : "Bull",
     rarity: "Common",
@@ -95,7 +66,50 @@ const brawlers = [
     rarity: "Epic",
     imageURL: "/images/edgar.png",
   },
-]; // array of brawler objects
+];
+
+let tierA = [
+  {
+    name : "Chester",
+    rarity: "Legendary",
+    imageURL: "/images/chester.png",
+  },
+  {
+    name : "Janet",
+    rarity: "Mythic",
+    imageURL: "/images/janet.png",
+  },
+  {
+    name : "Byron",
+    rarity: "Mythic",
+    imageURL: "/images/byron.png",
+  },
+];
+
+let tierB = [
+  {
+    name : "Carl",
+    rarity: "Rare",
+    imageURL: "/images/carl.png",
+  },
+  {
+    name : "Rico",
+    rarity: "Rare",
+    imageURL: "/images/rico.png",
+  },
+  {
+    name : "Lumi",
+    rarity: "Mythic",
+    imageURL: "/images/lumi.png",
+  },
+]
+
+// dictionary to map tiers to respective tier arrays
+const tierMap = {
+  S: tierS,
+  A: tierA,
+  B: tierB,
+}
 
 // This function adds cards the page to display the data in the array
 function showCards(brawlerData, id) {
@@ -121,7 +135,7 @@ function showCards(brawlerData, id) {
 
 function editCardContent(card, brawler) {
   card.style.display = "block";
-
+  card.id = brawler.name;
   const cardHeader = card.querySelector("h2");
   cardHeader.textContent = brawler.name;
 
@@ -140,19 +154,61 @@ function editCardContent(card, brawler) {
 
 // This calls the addCards() function when the page is first loaded
 document.addEventListener("DOMContentLoaded", () => {
-  showCards(brawlers, "card-container-1");
-  showCards(brawlers, "card-container-2");
-  showCards(brawlers, "card-container-3");
+  showCards(tierS, "card-container-S");
+  showCards(tierA, "card-container-A");
+  showCards(tierB, "card-container-B");
+  showCards(brawlers, "card-container-4");
 });
 
-function quoteAlert() {
-  console.log("Button Clicked!");
-  alert(
-    "I guess I can kiss heaven goodbye, because it got to be a sin to look this good!"
-  );
+
+function addBrawler() {
+  // get the input values
+  const tier = document.getElementById("tier").value;
+  const name = document.getElementById("brawler-name").value;
+  let brawler;
+
+  // find the brawler in the "unused/not displayed" array of brawlers
+  for (let i = 0; i < brawlers.length; i++) {
+    if (brawlers[i].name === name) {
+      brawler = brawlers[i];
+      brawlers.splice(i, 1); // remove the brawler from the array
+      break;
+    }
+  }
+
+  // if brawler is found and valid tier is input, add it to the correct tier container
+  if (brawler && tierMap[tier]) {
+    tierMap[tier].push(brawler); // add the brawler to the tier array
+    console.log("Adding brawler:", brawler.name, "to tier:", tier);
+    const templateCard = document.querySelector(".card");
+    const nextCard = templateCard.cloneNode(true); // Copy the template card
+    editCardContent(nextCard, brawler);
+    const cardContainer = document.getElementById("card-container-"+tier);
+    cardContainer.appendChild(nextCard); // Add new card to the container
+    showCards(brawlers, "card-container-4");
+  }
 }
 
-function removeLastCard() {
-  titles.pop(); // Remove last item in titles array
-  showCards(); // Call showCards again to refresh
+function removeBrawler() {
+  // get input values and find the respective container, and delete the card with the matching id to name
+  const tier = document.getElementById("tier").value;
+  const name = document.getElementById("brawler-name").value;
+
+  const cardContainer = document.getElementById("card-container-"+tier);
+  console.log(tier, name, cardContainer);
+  // if valid tier is passed in, look for the brawler in the card container to be removed
+  if (tierMap[tier]) {
+    // remove the brawler from the array, move back to unused array
+    for (let i = 0; i < tierMap[tier].length; i++) {
+      if (tierMap[tier][i].name === name) {
+        brawlers.push(tierMap[tier][i])
+        tierMap[tier].splice(i, 1); 
+        break;
+      }
+    }
+    showCards(tierMap[tier], "card-container-"+tier);
+    showCards(brawlers, "card-container-4");
+  }
+
+  
 }

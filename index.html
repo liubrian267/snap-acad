@@ -15,7 +15,7 @@
 
   <div class="container-wrapper">
     <div id="container-tier-1" class="card-container-tier"> S tier</div>
-    <div id="card-container-1" class="card-container bg-"></div>
+    <div id="card-container-S" class="card-container bg-"></div>
     <div class="card" style="display: none">
       <div class="image-wrapper">
         <img src="" alt="TV Show Poster" />
@@ -30,13 +30,12 @@
 
         </ul>
       </div>
-      </div>
     </div>
   </div>
 
   <div class="container-wrapper">
     <div id="container-tier-2" class="card-container-tier"> A tier</div>
-    <div id="card-container-2" class="card-container"></div>
+    <div id="card-container-A" class="card-container"></div>
     <div class="card" style="display: none">
       <div class="card-content">
         <h2>TV Show Title</h2>
@@ -48,24 +47,42 @@
       </div>
     </div>
   </div>
-  </div>
+
 
   <div class="container-wrapper">
     <div id="container-tier-3" class="card-container-tier"> B tier</div>
-  <div id="card-container-3" class="card-container"></div>
-  <div class="card" style="display: none">
-    <div class="card-content">
-      <h2>TV Show Title</h2>
-      <img src="" alt="TV Show Poster" />
-      <ul>
-        <li>Bullet Point 1</li>
-        <li>Bullet Point 2</li>
-      </ul>
-    </div>
+    <div id="card-container-B" class="card-container"></div>
+    <div class="card" style="display: none">
+      <div class="card-content">
+        <h2>TV Show Title</h2>
+        <img src="" alt="TV Show Poster" />
+        <ul>
+          <li>Bullet Point 1</li>
+          <li>Bullet Point 2</li>
+        </ul>
+      </div>
+   </div>
   </div>
   <div class="footer">
-    <button onclick="quoteAlert();">Get A Quote!</button>
-    <button onclick="removeLastCard();">Remove A Card!</button>
+    <div>
+      <input type="text" id="brawler-name" placeholder="Enter Brawler Name" />
+      <input type="text" id="tier" placeholder="Enter Tier in Caps (S, A, B)" />
+    </div>
+    <button onclick="addBrawler();">Add a Brawler to Tier List</button>
+    <button onclick="removeBrawler();">Remove a Brawler from Tier List</button>
+    <button onclick="sortByTier();">Sort by Rarity (select tier)</button>
+
+    <div id="card-container-4" class="card-container"></div>
+    <div class="card" style="display: none">
+      <div class="card-content">
+        <h2>TV Show Title</h2>
+        <img src="" alt="TV Show Poster" />
+        <ul>
+          <li>Bullet Point 1</li>
+          <li>Bullet Point 2</li>
+        </ul>
+      </div>
+   </div>
   </div>
 </body>
 

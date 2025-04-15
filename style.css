@@ -2,6 +2,8 @@ html,
 body {
   margin: 0;
   padding: 0;
+  background-color: #A8D0E6;
+  flex-direction: column;
 }
 
 .main-header {
@@ -69,7 +71,6 @@ body {
 
 
 .footer {
-  display: flex;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.3);
   padding: 10px;
