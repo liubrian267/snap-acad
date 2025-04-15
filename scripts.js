@@ -39,50 +39,111 @@ let titles = [
 // Your final submission should have much more data than this, and
 // you should use more than just an array of strings to store it all.
 
+const brawlers = [
+  {
+    name : "Shelly",
+    rarity: "Common",
+    imageURL: "/images/shelly.png",
+  },
+  {
+    name : "Carl",
+    rarity: "Rare",
+    imageURL: "/images/carl.png",
+  },
+  {
+    name : "Rico",
+    rarity: "Rare",
+    imageURL: "/images/rico.png",
+  },
+  {
+    name : "Lumi",
+    rarity: "Mythic",
+    imageURL: "/images/lumi.png",
+  },
+  {
+    name : "Chester",
+    rarity: "Legendary",
+    imageURL: "/images/chester.png",
+  },
+  {
+    name : "Janet",
+    rarity: "Mythic",
+    imageURL: "/images/janet.png",
+  },
+  {
+    name : "Byron",
+    rarity: "Mythic",
+    imageURL: "/images/byron.png",
+  },
+  // {
+  //   name : "Larry and Laurie",
+  //   rarity: "Common",
+  //   imageURL: "/images/larryandlawrie.png",
+  // },
+  {
+    name : "Bull",
+    rarity: "Common",
+    imageURL: "/images/bull.png",
+  },
+  {
+    name : "Jacky",
+    rarity: "Rare",
+    imageURL: "/images/jacky.png",
+  },
+  {
+    name : "Edgar",
+    rarity: "Epic",
+    imageURL: "/images/edgar.png",
+  },
+]; // array of brawler objects
+
 // This function adds cards the page to display the data in the array
-function showCards() {
-  const cardContainer = document.getElementById("card-container");
+function showCards(brawlerData, id) {
+  console.log("showCards called with brawlerData:", brawlerData);
+  const cardContainer = document.getElementById(id);
   cardContainer.innerHTML = "";
   const templateCard = document.querySelector(".card");
 
-  for (let i = 0; i < titles.length; i++) {
-    let title = titles[i];
+  for (let i = 0; i < brawlerData.length; i++) {
+    //let title = brawlerData[i].name;
 
-    // This part of the code doesn't scale very well! After you add your
-    // own data, you'll need to do something totally different here.
-    let imageURL = "";
-    if (i == 0) {
-      imageURL = FRESH_PRINCE_URL;
-    } else if (i == 1) {
-      imageURL = CURB_POSTER_URL;
-    } else if (i == 2) {
-      imageURL = EAST_LOS_HIGH_POSTER_URL;
-    }
+    // const bulletPoints = cardContent.querySelectorAll("ul li");
+    // bulletPoints[0].textContent = brawlerData[i].name;
+    // bulletPoints[1].textContent = brawlerData[i].rarity;
 
+    
+    
     const nextCard = templateCard.cloneNode(true); // Copy the template card
-    editCardContent(nextCard, title, imageURL); // Edit title and image
+    editCardContent(nextCard, brawlerData[i]); // Edit title and image
     cardContainer.appendChild(nextCard); // Add new card to the container
   }
 }
 
-function editCardContent(card, newTitle, newImageURL) {
+function editCardContent(card, brawler) {
   card.style.display = "block";
 
   const cardHeader = card.querySelector("h2");
-  cardHeader.textContent = newTitle;
+  cardHeader.textContent = brawler.name;
 
   const cardImage = card.querySelector("img");
-  cardImage.src = newImageURL;
-  cardImage.alt = newTitle + " Poster";
-
+  cardImage.src = brawler.imageURL;
+  cardImage.alt = brawler.name + " Poster";
+  
+  const bulletPoints = card.querySelectorAll("ul li");
+  bulletPoints[0].textContent = brawler.name;
+  bulletPoints[1].textContent = brawler.rarity;
   // You can use console.log to help you debug!
   // View the output by right clicking on your website,
   // select "Inspect", then click on the "Console" tab
-  console.log("new card:", newTitle, "- html: ", card);
+  console.log("new card:", brawler.name, "- html: ", card);
 }
 
 // This calls the addCards() function when the page is first loaded
-document.addEventListener("DOMContentLoaded", showCards);
+document.addEventListener("DOMContentLoaded", () => {
+  showCards(brawlers, "card-container-1");
+  showCards(brawlers, "card-container-2");
+  showCards(brawlers, "card-container-3");
+});
 
 function quoteAlert() {
   console.log("Button Clicked!");
