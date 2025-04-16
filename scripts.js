@@ -37,7 +37,7 @@ let brawlers = [
   {
     name : "Doug",
     rarity: "Mythic",
-    imageURL: "/images/doug.png",
+    imageURL: "./images/doug.png",
     weapon: "Sausage",
   },
   {
