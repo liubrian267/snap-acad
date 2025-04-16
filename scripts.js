@@ -23,21 +23,8 @@
  *
  */
 
-const FRESH_PRINCE_URL =
-  "https://upload.wikimedia.org/wikipedia/en/3/33/Fresh_Prince_S1_DVD.jpg";
-const CURB_POSTER_URL =
-  "https://m.media-amazon.com/images/M/MV5BZDY1ZGM4OGItMWMyNS00MDAyLWE2Y2MtZTFhMTU0MGI5ZDFlXkEyXkFqcGdeQXVyMDc5ODIzMw@@._V1_FMjpg_UX1000_.jpg";
-const EAST_LOS_HIGH_POSTER_URL =
-  "https://static.wikia.nocookie.net/hulu/images/6/64/East_Los_High.jpg";
 
-// This is an array of strings (TV show titles)
-let titles = [
-  "Fresh Prince of Bel Air",
-  "Curb Your Enthusiasm",
-  "East Los High",
-];
-// Your final submission should have much more data than this, and
-// you should use more than just an array of strings to store it all.
+
 
 // array of brawler objects
 let brawlers = [
@@ -45,7 +32,32 @@ let brawlers = [
     name : "Shelly",
     rarity: "Common",
     imageURL: "/images/shelly.png",
+    weapon: "Medium Range Shotgun",
   },
+  {
+    name : "Doug",
+    rarity: "Mythic",
+    imageURL: "/images/doug.png",
+    weapon: "Sausage",
+  },
+  {
+    name :"Piper",
+    rarity: "Epic",
+    imageURL: "/images/piper.png",
+    weapon: "Umbrella Sniper",
+  },
+  {
+    name : "Mandy",
+    rarity: "Epic",
+    imageURL: "/images/mandy.png",
+    weapon: "Sugar Candy",
+  },
+  {
+    name : "Spike",
+    rarity: "Legendary",
+    imageURL: "/images/spike.png",
+    weapon: "Cactus Ball",
+  }
 ]; 
 
 
@@ -55,16 +67,19 @@ let tierS = [
     name : "Bull",
     rarity: "Common",
     imageURL: "/images/bull.png",
+    weapon: "Short Range Shotgun",
   },
   {
     name : "Jacky",
     rarity: "Rare",
     imageURL: "/images/jacky.png",
+    weapon: "Jackhammer",
   },
   {
     name : "Edgar",
     rarity: "Epic",
     imageURL: "/images/edgar.png",
+    weapon: "Fists",
   },
 ];
 
@@ -73,16 +88,19 @@ let tierA = [
     name : "Chester",
     rarity: "Legendary",
     imageURL: "/images/chester.png",
+    weapon: "Bells",
   },
   {
     name : "Janet",
     rarity: "Mythic",
     imageURL: "/images/janet.png",
+    weapon: "Music Note Gun"
   },
   {
     name : "Byron",
     rarity: "Mythic",
     imageURL: "/images/byron.png",
+    weapon: "Poison Darts",
   },
 ];
 
@@ -91,16 +109,19 @@ let tierB = [
     name : "Carl",
     rarity: "Rare",
     imageURL: "/images/carl.png",
+    weapon: "Pickaxe",
   },
   {
     name : "Rico",
     rarity: "Rare",
     imageURL: "/images/rico.png",
+    weapon: "Bouncy Bullets",
   },
   {
     name : "Lumi",
     rarity: "Mythic",
     imageURL: "/images/lumi.png",
+    weapon: "Dual Maces",
   },
 ]
 
@@ -111,6 +132,15 @@ const tierMap = {
   B: tierB,
 }
 
+// dictionary to map rarity to numerical value for sorting
+const rarityRanking = {
+  "Legendary": 1,
+  "Mythic": 2,
+  "Epic": 3,
+  "Rare": 4,
+  "Common": 5,
+}
+
 // This function adds cards the page to display the data in the array
 function showCards(brawlerData, id) {
   console.log("showCards called with brawlerData:", brawlerData);
@@ -118,15 +148,8 @@ function showCards(brawlerData, id) {
   cardContainer.innerHTML = "";
   const templateCard = document.querySelector(".card");
 
+  // iterate through array and map each brawler to a card
   for (let i = 0; i < brawlerData.length; i++) {
-    //let title = brawlerData[i].name;
-
-    // const bulletPoints = cardContent.querySelectorAll("ul li");
-    // bulletPoints[0].textContent = brawlerData[i].name;
-    // bulletPoints[1].textContent = brawlerData[i].rarity;
-
-    
-    
     const nextCard = templateCard.cloneNode(true); // Copy the template card
     editCardContent(nextCard, brawlerData[i]); // Edit title and image
     cardContainer.appendChild(nextCard); // Add new card to the container
@@ -144,8 +167,9 @@ function editCardContent(card, brawler) {
   cardImage.alt = brawler.name + " Poster";
   
   const bulletPoints = card.querySelectorAll("ul li");
-  bulletPoints[0].textContent = brawler.name;
-  bulletPoints[1].textContent = brawler.rarity;
+
+  bulletPoints[0].textContent = brawler.rarity;
+  bulletPoints[1].textContent = brawler.weapon;
   // You can use console.log to help you debug!
   // View the output by right clicking on your website,
   // select "Inspect", then click on the "Console" tab
@@ -194,8 +218,6 @@ function removeBrawler() {
   const tier = document.getElementById("tier").value;
   const name = document.getElementById("brawler-name").value;
 
-  const cardContainer = document.getElementById("card-container-"+tier);
-  console.log(tier, name, cardContainer);
   // if valid tier is passed in, look for the brawler in the card container to be removed
   if (tierMap[tier]) {
     // remove the brawler from the array, move back to unused array
@@ -211,4 +233,38 @@ function removeBrawler() {
   }
 
   
+}
+
+function sortByRarity() { 
+  console.log('clicked');
+  const tier = document.getElementById("tier").value; 
+  
+  
+  tierMap[tier].sort((a, b) => { 
+    // Compare rarity first, if tie sort by name
+    if (a.rarity !== b.rarity) { 
+      return rarityRanking[a.rarity] - rarityRanking[b.rarity]; 
+    } else { 
+      return a.name.localeCompare(b.name); 
+    }
+  }); 
+  
+  console.log(tier, tierMap[tier]); 
+  showCards(tierMap[tier], "card-container-"+tier); 
+}
+
+function showByRarity() {
+  const rarity = document.getElementById("rarity").value;
+  // Filter the available brawlers in each tier by the input rarity, filter iterates through the array and returns matching elements
+  const filteredBrawlers = brawlers.filter(brawler => brawler.rarity === rarity);
+  showCards(filteredBrawlers, "card-container-4");
+
+  const filteredTierS = tierS.filter(brawler => brawler.rarity === rarity);
+  showCards(filteredTierS, "card-container-S");
+  
+  const filteredTierA = tierA.filter(brawler => brawler.rarity === rarity);
+  showCards(filteredTierA, "card-container-A");
+
+  const filteredTierB = tierB.filter(brawler => brawler.rarity === rarity);
+  showCards(filteredTierB, "card-container-B");
 }

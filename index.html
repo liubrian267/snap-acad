@@ -4,6 +4,7 @@
 <head>
   <title>LA TV Shows | Home</title>
   <meta name="description" content="A Catalog of Shows Set in Los Angeles" />
+  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
   <script type="text/javascript" src="scripts.js"></script>
 </head>
@@ -22,8 +23,6 @@
       </div>
       <div class="card-content">
         <h2>TV Show Title</h2>
-        
-      
         <ul>
           <li>Bullet Point 1</li>
           <li>Bullet Point 2</li>
@@ -43,6 +42,7 @@
         <ul>
           <li>Bullet Point 1</li>
           <li>Bullet Point 2</li>
+
         </ul>
       </div>
     </div>
@@ -59,19 +59,23 @@
         <ul>
           <li>Bullet Point 1</li>
           <li>Bullet Point 2</li>
+          <li>Bullet Point 3</li>
         </ul>
       </div>
    </div>
   </div>
   <div class="footer">
-    <div>
+
+    <div class="input-form-container">
       <input type="text" id="brawler-name" placeholder="Enter Brawler Name" />
       <input type="text" id="tier" placeholder="Enter Tier in Caps (S, A, B)" />
+      <input type="text" id="rarity" placeholder="Enter Rarity (Legendary, Mythic, Epic, Rare, Common)" />
+      <button onclick="addBrawler();">Add a Brawler to Tier List (input Name and Tier)</button>
+      <button onclick="removeBrawler();">Remove a Brawler from Tier List (input Name and Tier) </button>
+      <button onclick="sortByRarity();">Sort by Rarity (input Tier)</button>
+      <button onclick="showByRarity();">Display only a specific rarity (input Rarity)</button>
     </div>
-    <button onclick="addBrawler();">Add a Brawler to Tier List</button>
-    <button onclick="removeBrawler();">Remove a Brawler from Tier List</button>
-    <button onclick="sortByTier();">Sort by Rarity (select tier)</button>
-
+      
     <div id="card-container-4" class="card-container"></div>
     <div class="card" style="display: none">
       <div class="card-content">
@@ -80,10 +84,14 @@
         <ul>
           <li>Bullet Point 1</li>
           <li>Bullet Point 2</li>
+
         </ul>
       </div>
    </div>
+    
+
   </div>
+
 </body>
 
 </html>
