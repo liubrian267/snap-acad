@@ -4,7 +4,7 @@ body {
   padding: 0;
   background-color: #A8D0E6;
   flex-direction: column;
-  font-family: 'Luckiest Guy', cursive;
+  font-family: "Grandstander", cursive;
 }
 
 .main-header {
@@ -123,7 +123,8 @@ input {
   height: 40px; 
   box-sizing: border-box;
   border-radius: 10px;
-  font-family: 'Luckiest Guy', cursive;
+  font-family: "Grandstander", cursive;
+
 }
 
 button {
@@ -141,8 +142,9 @@ button {
   margin: 5px;
   display: flex;
   flex: 1;
-  width: 100%;;
-  font-family: 'Luckiest Guy', cursive;
+  width: 100%;
+  font-family: "Grandstander", cursive;
+
 
 }
 

@@ -32,7 +32,7 @@ let brawlers = [
     name : "Shelly",
     rarity: "Common",
     imageURL: "./images/shelly.png",
-    weapon: "Medium Range Shotgun",
+    weapon: "Shotgun",
   },
   {
     name : "Doug",
