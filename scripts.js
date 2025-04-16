@@ -31,7 +31,7 @@ let brawlers = [
   {
     name : "Shelly",
     rarity: "Common",
-    imageURL: "/images/shelly.png",
+    imageURL: "./images/shelly.png",
     weapon: "Medium Range Shotgun",
   },
   {
@@ -43,19 +43,19 @@ let brawlers = [
   {
     name :"Piper",
     rarity: "Epic",
-    imageURL: "/images/piper.png",
+    imageURL: "./images/piper.png",
     weapon: "Umbrella Sniper",
   },
   {
     name : "Mandy",
     rarity: "Epic",
-    imageURL: "/images/mandy.png",
+    imageURL: "./images/mandy.png",
     weapon: "Sugar Candy",
   },
   {
     name : "Spike",
     rarity: "Legendary",
-    imageURL: "/images/spike.png",
+    imageURL: "./images/spike.png",
     weapon: "Cactus Ball",
   }
 ]; 
@@ -66,19 +66,19 @@ let tierS = [
   {
     name : "Bull",
     rarity: "Common",
-    imageURL: "/images/bull.png",
+    imageURL: "./images/bull.png",
     weapon: "Short Range Shotgun",
   },
   {
     name : "Jacky",
     rarity: "Rare",
-    imageURL: "/images/jacky.png",
+    imageURL: "./images/jacky.png",
     weapon: "Jackhammer",
   },
   {
     name : "Edgar",
     rarity: "Epic",
-    imageURL: "/images/edgar.png",
+    imageURL: "./images/edgar.png",
     weapon: "Fists",
   },
 ];
@@ -87,19 +87,19 @@ let tierA = [
   {
     name : "Chester",
     rarity: "Legendary",
-    imageURL: "/images/chester.png",
+    imageURL: "./images/chester.png",
     weapon: "Bells",
   },
   {
     name : "Janet",
     rarity: "Mythic",
-    imageURL: "/images/janet.png",
+    imageURL: "./images/janet.png",
     weapon: "Music Note Gun"
   },
   {
     name : "Byron",
     rarity: "Mythic",
-    imageURL: "/images/byron.png",
+    imageURL: "./images/byron.png",
     weapon: "Poison Darts",
   },
 ];
@@ -108,19 +108,19 @@ let tierB = [
   {
     name : "Carl",
     rarity: "Rare",
-    imageURL: "/images/carl.png",
+    imageURL: "./images/carl.png",
     weapon: "Pickaxe",
   },
   {
     name : "Rico",
     rarity: "Rare",
-    imageURL: "/images/rico.png",
+    imageURL: "./images/rico.png",
     weapon: "Bouncy Bullets",
   },
   {
     name : "Lumi",
     rarity: "Mythic",
-    imageURL: "/images/lumi.png",
+    imageURL: "./images/lumi.png",
     weapon: "Dual Maces",
   },
 ]
